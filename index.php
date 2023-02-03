@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Theme Made By www.w3schools.com -->
+ 
   <title>Super Movil App</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,7 +32,7 @@
     margin-bottom: 30px;
   }  
   .jumbotron {
-    background-color: #381222;
+    background-color: #1ec1f4;
     color: #fff;
     padding: 100px 25px;
     font-family: Montserrat, sans-serif;
@@ -48,7 +48,7 @@
     font-size: 50px;
   }
   .logo {
-    color: #f4511e;
+    color: #1ec1f4;
     font-size: 200px;
   }
   .thumbnail {
@@ -96,7 +96,7 @@
   }
   .panel-heading {
     color: #fff !important;
-    background-color: #f4511e !important;
+    background-color: #1e56f4 !important;
     padding: 25px;
     border-bottom: 1px solid transparent;
     border-top-left-radius: 0px;
@@ -116,12 +116,12 @@
   }
   .panel-footer .btn {
     margin: 15px 0;
-    background-color: #f4511e;
+    background-color: #000000;
     color: #fff;
   }
   .navbar {
     margin-bottom: 0;
-    background-color: #f4511e;
+    background-color: #0000a0;
     z-index: 9999;
     border: 0;
     font-size: 12px !important;
@@ -326,7 +326,7 @@
         </div>
         <div class="panel-footer">
           <h2>$0.00</h2>
-          <a href="apk/usuario.apk" download="SuperMovilUsuario">         
+          <a href="https://play.google.com/store/apps/details?id=com.sigredes.supermovilcliente" download="SuperMovilUsuario">         
           <button class="btn"><i class="fa fa-download"></i> Download</button>
           </a>
         </div>
@@ -406,26 +406,24 @@
 
 <script>
 $(document).ready(function(){
-  // Add smooth scrolling to all links in navbar + footer link
+
   $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
-    // Make sure this.hash has a value before overriding default behavior
+
     if (this.hash !== "") {
-      // Prevent default anchor click behavior
+   
       event.preventDefault();
 
-      // Store hash
+ 
       var hash = this.hash;
 
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
       $('html, body').animate({
         scrollTop: $(hash).offset().top
       }, 900, function(){
    
-        // Add hash (#) to URL when done scrolling (default click behavior)
+    
         window.location.hash = hash;
       });
-    } // End if
+    }
   });
   
   $(window).scroll(function() {

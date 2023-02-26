@@ -34,7 +34,7 @@
   .jumbotron {
     background-color: #1ec1f4;
     color: #fff;
-    padding: 100px 25px;
+    padding: 75px 25px;
     font-family: Montserrat, sans-serif;
   }
   .container-fluid {
@@ -193,14 +193,78 @@
 </head>
 <body id="midescuento" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-
-
 <div class="jumbotron text-center">
-  <h1>Super Movil App</h1> 
-  <p>Tecnologia de movilidad interurbana</p>  
-    <img src="/img/descuentos1.png" class="mx-auto d-block" style="width:80%"> 
-</div>
+<h1>!Oferta de descuentos!...</h1>
+ 
 
+PLAN DE ACTIVACION Y PROMOCION DEL APLICATIVO SUPER MOVIL.
+
+ 
+
+Colaboradores y consejeros
+
+1. Nicanor Ortega ->taxista Piquera Pacora
+
+2. Carlos Morales ->taxista Piquera Bugaba
+                   
+3. Lic. Ramon Morales -> ATTT  
+
+4. Lic. Elias Querini  Consejero
+
+5. Ing. Leoncio Ambulo  Consejero
+
+ 
+
+Precio por servicio otros App
+
+1.Uber ->20% por servicio
+
+2. InDrive -> 15-20%
+
+3. DiDi -> 15%
+
+Super Movilidad Inter Urbana (SUPER MOVIL)
+
+Precio por Servicio
+
+·Super Móvil Chofer -> 10-15%
+
+Plan Piloto de promoción en Chiriquí
+
+1. Por Venta del SUPER MOVIL servicio en Piqueras.
+
+  a. Porcentaje a pagar al colaborador -> 30% por piquera de ganancias por dos meses.
+
+  b. Porcentaje a pagar al dueño de piquera o gerente ->30%
+
+ 
+
+2. Piqueras Virtuales : Creación de piqueras virtuales  por el colaborador. 
+
+  a. Porcentaje a pagar al colaborador -> 30% por piquera de ganancias por dos meses.
+
+
+ 
+
+Detalle : En caso de una piquera que tenga 10 unidades de taxis y cada taxi genere al $20.00 por día .
+
+CASO COLABORADOR POR PIQUERA
+
+  1.  Al mes (30 días x $20 x 10 taxis ) = $6000.00 total.
+
+  2.  De los $6000 a 10% por servicios = $600.00
+
+  3.  Beneficio 30% por pago colaborador por piquera $180 x 4 = $720.00  mas los servicios de Super Móvil gratis por el mismo tiempo.
+
+CASO COLABORADOR PIQUERA VIRTUAL
+
+  1. Al mes (30 días x $20 x 10 taxis ) = $6000.00 total.
+
+  2. De los $6000 a 10% por servicios = $600.00
+
+  3. Beneficio 20% por pago colaborador por piquera VIRTUAL $120  mas los servicios de Super Móvil gratis.
+
+</div>
 
 <!-- Container (Portfolio Section) -->
 <div id="portfolio" class="container-fluid text-center bg-grey">

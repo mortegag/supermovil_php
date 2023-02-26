@@ -351,7 +351,7 @@
         </div>
         <div class="panel-footer">
           <h2>%10 a 15% por servicio</h2>
-          <a href="#" download="SuperMovilChofer">         
+          <a href="https://play.google.com/store/apps/details?id=com.sigredes.supermovilchofer" download="SuperMovilChofer">         
           <button class="btn" onclick="clicFunction()"><i class="fa fa-download"></i> Download</button>
           </a>
           <p id="clics"></p>

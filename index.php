@@ -1,3 +1,37 @@
+
+<?php
+
+
+if(isset($_POST['correo'])) { 
+
+
+  $subject = $_POST['subject'];
+  $message = $_POST['message'];
+  $from = $_POST['email'];
+  $name = $_POST['name'];
+
+  $to = "soporte@supermovilapp.com";
+  $subject = "Esto es una prueba";
+  
+  //$message = "<b>This is HTML message.</b>";
+  //$message .= "<h1>This is headline.</h1>";
+  
+  $header = "From:".$from."\r\n";
+
+  $header .= "MIME-Version: 1.0\r\n";
+  $header .= "Content-type: text/html\r\n";
+  
+  $retval = mail ($to,$subject,$message,$header);
+  
+  if( $retval == true ) {
+     echo "Message sent successfully...";
+  }else {
+     echo "Message could not be sent...";
+  }
+
+
+ }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -220,9 +254,11 @@
   <p>Tecnologia de movilidad interurbana</p> 
   <form>
     <div class="input-group">
-      <input type="email" class="form-control" size="50" placeholder="Email Address" required>
+      <input type="email" class="form-control" size="50" placeholder="Ver nuestros productos SUPER MOVIL -----> " required>
       <div class="input-group-btn">
-        <button type="button" class="btn btn-danger">Subscribe</button>
+        <a href="#portfolio">
+        <button type="button" class="btn btn-danger">Ir a Productos</button>
+        </a>
       </div>
     </div>
   </form>
@@ -373,7 +409,7 @@
       <p><span class="glyphicon glyphicon-envelope"></span> soporte@supermovilapp.com</p>
     </div>
     <div class="col-sm-7 slideanim">
-    <form method="POST" name="contactform" action="include/contact-form-handler.php>
+    <form method="POST"  action="index.php">
       <div class="row">
         <div class="col-sm-6 form-group">
           <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
@@ -385,7 +421,7 @@
       <textarea class="form-control" id="message" name="message" placeholder="Comment" rows="5"></textarea><br>
       <div class="row">
         <div class="col-sm-12 form-group">
-          <button class="btn btn-default pull-right" type="submit" 
+          <button class="btn btn-default pull-right" type="submit" name="correo"
           value="Submit">Send</button>
         </div>
       </div>

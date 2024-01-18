@@ -243,7 +243,7 @@ if(isset($_POST['correo'])) {
         <li><a href="#services">SERVICIOS</a></li>
         <li><a href="#portfolio">PORTAFOLIO</a></li>
         <li><a href="#pricing">PRECIOS</a></li>
-        <li><a href="#contact">CONTACTO</a></li>
+        <li><a href="#contact">CONTACTOS</a></li>
       </ul>
     </div>
   </div>

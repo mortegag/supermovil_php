@@ -17,7 +17,7 @@
     <?php
         
         /* Connecting Gmail server with IMAP */
-        $connection = imap_open('{mail.supermovilapp.com:993/imap/ssl/novalidate-cert}INBOX', 'ventas@supermovilapp.com', 'Coco.1961') or die('Cannot connect to Gmail: '.print_r(imap_errors())); 
+        $connection = imap_open('{mail.supermovilapp.com:993/imap/ssl/novalidate-cert}INBOX', 'ventas@supermovilapp.com', 'nopassword') or die('Cannot connect to Gmail: '.print_r(imap_errors())); 
         
         /* Search Emails having the specified keyword in the email subject */
         $emailData = imap_search($connection, 'ALL');

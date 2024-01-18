@@ -12,7 +12,7 @@
 /* connect to gmail with your credentials */
 $hostname = '{imap.gmail.com:993/imap/ssl/novalidate-cert}INBOX';
 $username = 'sirdesarrollo@gmail.com'; # e.g somebody@gmail.com
-$password = 'Coco.1961';
+$password = 'nopassword';
 
 
 /* try to connect */

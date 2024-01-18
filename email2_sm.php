@@ -12,7 +12,7 @@
 /* connect to gmail with your credentials */
 $hostname = '{mail.supermovilapp.com:993/imap/ssl/novalidate-cert}INBOX';
 $username = 'ventas@supermovilapp.com'; # e.g somebody@gmail.com
-$password = 'Coco.1961';
+$password = 'nopassword';
 
 
 /* try to connect */

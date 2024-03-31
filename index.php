@@ -364,6 +364,7 @@ if(isset($_POST['correo'])) {
           <h2>$0.00</h2>
           <a href="https://play.google.com/store/apps/details?id=com.sigredes.supermovilcliente" download="SuperMovilUsuario">         
           <button class="btn"><i class="fa fa-download"></i> Download</button>
+          <a href="apk/app-release.apk" download>Descarga directa</a>
           </a>
         </div>
       </div>      
@@ -405,8 +406,8 @@ if(isset($_POST['correo'])) {
     <div class="col-sm-5">
       <p>Puede Contactactarnos en estos medios.</p>
       <p><span class="glyphicon glyphicon-map-marker"></span> Panama, Panama</p>
-      <p><span class="glyphicon glyphicon-phone"></span> +507 6557-6467  (whatsapp)</p> 
-      <p><span class="glyphicon glyphicon-envelope"></span> soporte@supermovilapp.com</p>
+      <p><span class="glyphicon glyphicon-phone"></span> +507 6557-555447  (whatsapp)</p> 
+      <p><span class="glyphicon glyphicon-envelope"></span> support@supermovilapp.com</p>
     </div>
     <div class="col-sm-7 slideanim">
     <form method="POST"  action="index.php">

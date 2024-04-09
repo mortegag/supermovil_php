@@ -1,3 +1,4 @@
+<?php header('Access-Control-Allow-Origin: *'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa con Leaflet.js</title>
-    <?php header('Access-Control-Allow-Origin: *'); ?>
+    
  
     <!-- Incluir la biblioteca Leaflet.js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />

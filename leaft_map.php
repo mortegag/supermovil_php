@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa con Leaflet.js</title>
-    
+  
+
  
     <!-- Incluir la biblioteca Leaflet.js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -24,7 +25,7 @@
         // Función para cargar los datos desde el servidor API
         async function cargarDatos() {
             try {
-                const response = await fetch('https://supermovilapp.com:3001/api/collections/GeoPoints/documents');
+                const response = await fetch('http://supermovilapp.com:3001/api/collections/GeoPoints/documents');
                 const datos = await response.json();
 
                 // Coordenadas de los puntos

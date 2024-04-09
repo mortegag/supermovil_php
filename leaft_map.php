@@ -27,7 +27,7 @@
         // Función para cargar los datos desde el servidor API
         async function cargarDatos() {
             try {
-                const response = await fetch('http://supermovilapp.com:3001/api/collections/GeoPoints/documents', { mode: "cors" });
+                const response = await fetch('http://supermovilapp.com:3001/api/collections/GeoPoints/documents', {method: 'get', mode: 'cors', headers: {'Content-Type': 'application/json'}});
 
                 const datos = await response.json();
 

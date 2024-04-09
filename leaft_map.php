@@ -1,4 +1,4 @@
-<?php header('Access-Control-Allow-Origin: *'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa con Leaflet.js</title>
   
-
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
  
     <!-- Incluir la biblioteca Leaflet.js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -26,6 +26,7 @@
         async function cargarDatos() {
             try {
                 const response = await fetch('http://supermovilapp.com:3001/api/collections/GeoPoints/documents');
+                referrerPolicy: "unsafe_url"
                 const datos = await response.json();
 
                 // Coordenadas de los puntos

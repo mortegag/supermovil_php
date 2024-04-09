@@ -1,3 +1,19 @@
+<?php
+    // Obtener los datos desde la URL del servidor
+    $data = file_get_contents("http://supermovilapp.com:3001/api/collections/GeoPoints/documents");
+
+    // Decodificar los datos JSON
+    $datos = json_decode($data);
+
+    // Coordenadas de los puntos
+    $puntos = array();
+    foreach ($datos as $documento) {
+        $puntos[] = array(
+            'latitud' => floatval($documento->lat),
+            'longitud' => floatval($documento->Lng)
+        );
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,48 +36,30 @@
 
 <body>
     <div id="map"></div>
-    <?php
-    echo file_get_contents("http://supermovilapp.com:3001/api/collections/GeoPoints/documents");
-    ?>
     <script>
-        // Función para cargar los datos desde el servidor API
-        async function cargarDatos() {
-            try {
-                const response = await fetch('http://supermovilapp.com:3001/api/collections/GeoPoints/documents', {method: 'get', mode: 'cors', headers: {'Content-Type': 'application/json'}});
+        // Coordenadas de los puntos obtenidos desde PHP
+        var puntos = <?php echo json_encode($puntos); ?>;
 
-                const datos = await response.json();
+        // Crear un mapa centrado en una ubicación específica
+        var map = L.map('map').setView([40.7128, -74.0060], 3);
 
-                // Coordenadas de los puntos
-                var puntos = datos.map(function (documento) {
-                    return {
-                        latitud: parseFloat(documento.lat),
-                        longitud: parseFloat(documento.Lng)
-                    };
-                });
+        // Agregar una capa de mapa base
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
 
-                // Crear un mapa centrado en una ubicación específica
-                var map = L.map('map').setView([40.7128, -74.0060], 3);
+        // Agregar puntos al mapa
+        puntos.forEach(function(punto) {
+            L.marker([punto.latitud, punto.longitud]).addTo(map);
+        });
 
-                // Agregar una capa de mapa base
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '© OpenStreetMap contributors'
-                }).addTo(map);
-
-                // Agregar puntos al mapa
-                puntos.forEach(function (punto) {
-                    L.marker([punto.latitud, punto.longitud]).addTo(map);
-                });
-
-                // Actualizar continuamente las posiciones cada 5 segundos
-                setTimeout(cargarDatos, 5000);
-            } catch (error) {
-                console.error('Error al cargar los datos:', error);
-            }
+        // Función para actualizar continuamente las posiciones cada 5 segundos
+        function cargarDatos() {
+            location.reload(); // Recargar la página para obtener datos actualizados
         }
 
-
-        // Llamar a la función para cargar los datos cuando se cargue la página
-        cargarDatos();
+        // Actualizar continuamente las posiciones cada 5 segundos
+        setInterval(cargarDatos, 5000);
     </script>
 </body>
 

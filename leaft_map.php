@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa con Leaflet.js</title>
-  
+
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
- 
+
     <!-- Incluir la biblioteca Leaflet.js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -21,16 +20,19 @@
 
 <body>
     <div id="map"></div>
+    <?php
+    echo file_get_contents("http://supermovilapp.com:3001/api/collections/GeoPoints/documents");
+    ?>
     <script>
         // Función para cargar los datos desde el servidor API
         async function cargarDatos() {
             try {
-                const response = await fetch('http://supermovilapp.com:3001/api/collections/GeoPoints/documents',{ mode: "cors"});
-                
+                const response = await fetch('http://supermovilapp.com:3001/api/collections/GeoPoints/documents', { mode: "cors" });
+
                 const datos = await response.json();
 
                 // Coordenadas de los puntos
-                var puntos = datos.map(function(documento) {
+                var puntos = datos.map(function (documento) {
                     return {
                         latitud: parseFloat(documento.lat),
                         longitud: parseFloat(documento.Lng)
@@ -46,7 +48,7 @@
                 }).addTo(map);
 
                 // Agregar puntos al mapa
-                puntos.forEach(function(punto) {
+                puntos.forEach(function (punto) {
                     L.marker([punto.latitud, punto.longitud]).addTo(map);
                 });
 

@@ -41,8 +41,8 @@
         var puntos = <?php echo json_encode($puntos); ?>;
 
         // Crear un mapa centrado en una ubicación específica
-        var map = L.map('map').setView([40.7128, -74.0060], 3);
-
+        var map = L.map('map').setView([ 8.52446182139949, -82.62872376928289], 15);
+        
         // Agregar una capa de mapa base
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'

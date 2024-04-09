@@ -25,8 +25,8 @@
         // Función para cargar los datos desde el servidor API
         async function cargarDatos() {
             try {
-                const response = await fetch('http://supermovilapp.com:3001/api/collections/GeoPoints/documents');
-                referrerPolicy: "unsafe_url"
+                const response = await fetch('http://supermovilapp.com:3001/api/collections/GeoPoints/documents'{ referrerPolicy: "unsafe_url"});
+                
                 const datos = await response.json();
 
                 // Coordenadas de los puntos

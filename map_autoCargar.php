@@ -44,7 +44,7 @@
     {
         // Crear un mapa centrado en una ubicación específica
         echo "<script>";
-        echo "var map = L.map('map').setView([ 8.52446182139949, -82.62872376928289], 16);";
+        echo "var map = L.map('map').setView([ 8.52446182, -82.62872376], 10);";
         // Agregar una capa de mapa base
         echo "L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'

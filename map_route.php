@@ -41,21 +41,34 @@ $coordinates = $data['features'][0]['geometry']['coordinates'];
         }).addTo(map);
 
         // Dibujar la ruta en el mapa
-        var routeCoordinates = [
-            <?php
-            foreach ($coordinates as $coordinate) {
-                echo "[" . $coordinate[1] . ", " . $coordinate[0] . "],";
+        var_dump($coordinates);
+        var_dump(count($coordinates));
+        $coordinateCount = count($coordinates);
+
+        
+        for ($i = 0; $i < $coordinateCount; $i++) {
+            echo "Coordenada ".$i. ": [".$coordinates[$i][0]. ", ".$coordinates[$i][1]. "]";
+            if ($i < $coordinateCount - 1) {
+                    echo ", ";
             }
-            ?>
-        ];
+        }
+
+
         var polyline = L.polyline(routeCoordinates, { color: 'blue' }).addTo(map);
-        map.fitBounds(polyline.getBounds());
+
+        // Ajustar los límites del mapa a la ruta, si es válido
+        if (polyline.getBounds().isValid()) {
+            map.fitBounds(polyline.getBounds());
+        } else {
+            // Establecer una vista inicial del mapa sin ajustar a la ruta
+            map.setView([<?php echo $origin_lat; ?>, <?php echo $origin_lng; ?>], 13);
+        }
 
         // Mostrar la distancia y la duración
         console.log('Distancia: ' + (<?php echo $distance; ?> / 1000).toFixed(2) + ' km');
-      //  console.log('Duración en auto: ' + Math.floor(<?php echo $duration_car; ?> / 60) + ' min');
-      //  console.log('Duración a pie: ' + Math.floor(<?php echo $duration_pedestrian; ?> / 60) + ' min');
-      //  console.log('Duración en bicicleta: ' + Math.floor(<?php echo $duration_bicycle; ?> / 60) + ' min');
+        console.log('Duración en auto: ' + Math.floor(<?php echo $duration_car; ?> / 60) + ' min');
+        console.log('Duración a pie: ' + Math.floor(<?php echo $duration_pedestrian; ?> / 60) + ' min');
+        console.log('Duración en bicicleta: ' + Math.floor(<?php echo $duration_bicycle; ?> / 60) + ' min');
     </script>
 </body>
 

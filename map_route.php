@@ -3,13 +3,14 @@
 $ors_api_key = '5b3ce3597851110001cf624814ab2cd7d2ee480c9f7a79416538787f';
 
 // Coordenadas de origen y destino
-$origin_lat = 40.730610;
-$origin_lng = -73.935242;
-$destination_lat = 40.73061;
-$destination_lng = -73.935242;
+// Coordenadas de origen y destino
+$origin_lat = 8.52106435;
+$origin_lng = -82.62965255;
+$destination_lat = 8.513241299999999;
+$destination_lng = -82.6196176;
 
 // Calcular la ruta usando OpenRouteService
-$url = "https://api.openrouteservice.org/v2/directions?api_key=$ors_api_key&start=$origin_lng,$origin_lat&end=$destination_lng,$destination_lat&profile=driving-car&format=geojson";
+$url = "https://api.openrouteservice.org/v2/directions/driving-car?api_key=$ors_api_key&start=$origin_lng,$origin_lat&end=$destination_lng,$destination_lat&format=geojson";
 $response = file_get_contents($url);
 $data = json_decode($response, true);
 
@@ -24,13 +25,11 @@ $coordinates = $data['features'][0]['geometry']['coordinates'];
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Mapa de Ruta</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 </head>
-
 <body>
     <div id="map" style="height: 500px;"></div>
     <script>
@@ -41,20 +40,18 @@ $coordinates = $data['features'][0]['geometry']['coordinates'];
         }).addTo(map);
 
         // Dibujar la ruta en el mapa
-        var_dump($coordinates);
-        var_dump(count($coordinates));
-        $coordinateCount = count($coordinates);
-
-        
-        for ($i = 0; $i < $coordinateCount; $i++) {
-            echo "Coordenada ".$i. ": [".$coordinates[$i][0]. ", ".$coordinates[$i][1]. "]";
-            if ($i < $coordinateCount - 1) {
-                    echo ", ";
-            }
-        }
-
-
-        var polyline = L.polyline(routeCoordinates, { color: 'blue' }).addTo(map);
+        var routeCoordinates = [
+            <?php
+                $coordinateCount = count($coordinates);
+                for ($i = 0; $i < $coordinateCount; $i++) {
+                    echo "[" . $coordinates[$i][1] . ", " . $coordinates[$i][0] . "]";
+                    if ($i < $coordinateCount - 1) {
+                        echo ",";
+                    }
+                }
+            ?>
+        ];
+        var polyline = L.polyline(routeCoordinates, {color: 'blue'}).addTo(map);
 
         // Ajustar los límites del mapa a la ruta, si es válido
         if (polyline.getBounds().isValid()) {
@@ -67,9 +64,8 @@ $coordinates = $data['features'][0]['geometry']['coordinates'];
         // Mostrar la distancia y la duración
         console.log('Distancia: ' + (<?php echo $distance; ?> / 1000).toFixed(2) + ' km');
         console.log('Duración en auto: ' + Math.floor(<?php echo $duration_car; ?> / 60) + ' min');
-        console.log('Duración a pie: ' + Math.floor(<?php echo $duration_pedestrian; ?> / 60) + ' min');
-        console.log('Duración en bicicleta: ' + Math.floor(<?php echo $duration_bicycle; ?> / 60) + ' min');
+       // console.log('Duración a pie: ' + Math.floor(<?php echo $duration_pedestrian; ?> / 60) + ' min');
+        //console.log('Duración en bicicleta: ' + Math.floor(<?php echo $duration_bicycle; ?> / 60) + ' min');
     </script>
 </body>
-
 </html>

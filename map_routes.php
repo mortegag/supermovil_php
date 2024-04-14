@@ -26,6 +26,15 @@
             height: 100%;
             width: 100vw;
         }
+
+        .custom-div-icon {
+            display: inline;
+            background-color: yellow;
+            margin: auto;
+            width: 50%;
+            border: 3px solid green;
+            padding: 10px;
+        }
     </style>
 </head>
 
@@ -105,6 +114,12 @@
                 // Establecer una vista inicial del mapa sin ajustar a la ruta
                 map.setView([$origin_lat, $origin_lng], 13);
             }";
+            // Mostrar la distancia y la duración
+            echo "var distanceMarker = L.marker(polyline.getCenter(), {icon: L.divIcon({ className: 'custom-div-icon', html: 'Distancia: "
+                . round($data['features'][0]['properties']['summary']['distance'] / 1000, 2) . " km' })}).addTo(map);";
+            echo "var durationMarker = L.marker(polyline.getLatLngs()[0], {icon: L.divIcon({ className: 'custom-div-icon', html: 'Duración en auto: "
+                . floor($data['features'][0]['properties']['summary']['duration'] / 60) . " min' })}).addTo(map);";
+
             echo "</script>";
         }
     }

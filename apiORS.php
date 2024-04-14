@@ -7,7 +7,7 @@ $origin_lat = 8.52106435;
 $origin_lng = -82.62965255;
 $destination_lat = 8.513241299999999;
 $destination_lng = -82.6196176;
-$profile = "foot-walking";
+
 
 // Calcular la ruta usando OpenRouteService
 

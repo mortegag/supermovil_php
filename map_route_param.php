@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa con Leaflet.js</title>
+    <title>Mapa eudoo</title>
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <!-- Incluir la biblioteca Leaflet.js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -47,26 +47,31 @@
     // Requerimientos: Obtener datos desde la URL
     function obtenerDatos()
     {
-        // Verificar si hay valores en la URL
-        if (isset($_GET['origin_lng'], $_GET['origin_lat'], $_GET['destination_lng'], $_GET['destination_lat'])) {
-            // Obtener valores de la URL
+        // Verificar si hay valores en la URL para el origen
+        if (isset($_GET['origin_lng'], $_GET['origin_lat']) && !empty($_GET['origin_lng']) && !empty($_GET['origin_lat'])) {
+            // Obtener valores de origen de la URL
             $origin_lng = $_GET['origin_lng'];
             $origin_lat = $_GET['origin_lat'];
-            $destination_lng = $_GET['destination_lng'];
-            $destination_lat = $_GET['destination_lat'];
         } else {
+            // No se proporcionaron valores para el origen, retornar un array vacío
             return [];
         }
-        
-        // Realizar cualquier operación adicional necesaria con los datos
 
-        // Retornar los datos en un formato apropiado
-        return [
-            (object)['id' => 1, 'lat' => $origin_lat, 'Lng' => $origin_lng, 'Description' => 'Origen'],
-            (object)['id' => 2, 'lat' => $destination_lat, 'Lng' => $destination_lng, 'Description' => 'Destino']
-        ];
+        // Verificar si hay valores en la URL para el destino
+        if (isset($_GET['destination_lng'], $_GET['destination_lat']) && !empty($_GET['destination_lng']) && !empty($_GET['destination_lat'])) {
+            // Obtener valores de destino de la URL
+            $destination_lng = $_GET['destination_lng'];
+            $destination_lat = $_GET['destination_lat'];
+            // Retornar los datos con el origen y destino
+            return [
+                (object) ['id' => 1, 'lat' => $origin_lat, 'Lng' => $origin_lng, 'Description' => 'Origen'],
+                (object) ['id' => 2, 'lat' => $destination_lat, 'Lng' => $destination_lng, 'Description' => 'Destino']
+            ];
+        } else {
+            // Retornar solo los datos del origen
+            return [(object) ['id' => 1, 'lat' => $origin_lat, 'Lng' => $origin_lng, 'Description' => 'Origen']];
+        }
     }
-
     // Requerimientos: Cargar el mapa con los nuevos datos de los puntos y dibujar la ruta si es posible
     function cargarMapa($puntos)
     {

@@ -52,6 +52,8 @@
             // Obtener valores de origen de la URL
             $origin_lng = $_GET['origin_lng'];
             $origin_lat = $_GET['origin_lat'];
+            $origin_description = $_GET['origin_description'];
+            $origin_id = $_GET['origin_id'];
         } else {
             // No se proporcionaron valores para el origen, retornar un array vacío
             return [];
@@ -62,14 +64,17 @@
             // Obtener valores de destino de la URL
             $destination_lng = $_GET['destination_lng'];
             $destination_lat = $_GET['destination_lat'];
+            $destination_description = $_GET['destination_description'];
+            $destination_id = $_GET['destination_id'];
+
             // Retornar los datos con el origen y destino
             return [
-                (object) ['id' => 1, 'lat' => $origin_lat, 'Lng' => $origin_lng, 'Description' => 'Origen'],
-                (object) ['id' => 2, 'lat' => $destination_lat, 'Lng' => $destination_lng, 'Description' => 'Destino']
+                (object) ['id' => $origin_id, 'lat' => $origin_lat, 'Lng' => $origin_lng, 'Description' => $origin_description],
+                (object) ['id' =>  $destination_id, 'lat' => $destination_lat, 'Lng' => $destination_lng, 'Description' => $destination_description]
             ];
         } else {
             // Retornar solo los datos del origen
-            return [(object) ['id' => 1, 'lat' => $origin_lat, 'Lng' => $origin_lng, 'Description' => 'Origen']];
+            return [(object) ['id' => $origin_id, 'lat' => $origin_lat, 'Lng' => $origin_lng, 'Description' => $origin_description]];
         }
     }
     // Requerimientos: Cargar el mapa con los nuevos datos de los puntos y dibujar la ruta si es posible

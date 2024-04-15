@@ -44,11 +44,31 @@
 <body>
     <div id="map"></div>
     <?php
-    // Requerimientos: Obtener datos desde el servidor
+    // Requerimientos: Obtener datos desde la URL
     function obtenerDatos()
     {
-        $data = file_get_contents("http://supermovilapp.com:3001/api/collections/GeoPoints/documents");
-        return json_decode($data);
+        // Verificar si hay valores en la URL
+        if (isset($_GET['origin_lng'], $_GET['origin_lat'], $_GET['destination_lng'], $_GET['destination_lat'])) {
+            // Obtener valores de la URL
+            $origin_lng = $_GET['origin_lng'];
+            $origin_lat = $_GET['origin_lat'];
+            $destination_lng = $_GET['destination_lng'];
+            $destination_lat = $_GET['destination_lat'];
+        } else {
+            // Valores por defecto
+            $origin_lng = -82.62965255;
+            $origin_lat = 8.52106435;
+            $destination_lng = -82.6196176;
+            $destination_lat = 8.5132413;
+        }
+        
+        // Realizar cualquier operación adicional necesaria con los datos
+
+        // Retornar los datos en un formato apropiado
+        return [
+            (object)['id' => 1, 'lat' => $origin_lat, 'Lng' => $origin_lng, 'Description' => 'Origen'],
+            (object)['id' => 2, 'lat' => $destination_lat, 'Lng' => $destination_lng, 'Description' => 'Destino']
+        ];
     }
 
     // Requerimientos: Cargar el mapa con los nuevos datos de los puntos y dibujar la ruta si es posible

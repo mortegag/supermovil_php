@@ -55,11 +55,7 @@
             $destination_lng = $_GET['destination_lng'];
             $destination_lat = $_GET['destination_lat'];
         } else {
-            // Valores por defecto
-            $origin_lng = -82.62965255;
-            $origin_lat = 8.52106435;
-            $destination_lng = -82.6196176;
-            $destination_lat = 8.5132413;
+            return [];
         }
         
         // Realizar cualquier operación adicional necesaria con los datos

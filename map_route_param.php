@@ -75,9 +75,11 @@
     // Requerimientos: Cargar el mapa con los nuevos datos de los puntos y dibujar la ruta si es posible
     function cargarMapa($puntos)
     {
+        $origin_lat = $puntos[0]->lat;
+        $origin_lng = $puntos[0]->Lng;
         // Crear un mapa centrado en una ubicación específica
         echo "<script>";
-        echo "var map = L.map('map').setView([ 8.52446182, -82.62872376], 15);";
+        echo "var map = L.map('map').setView([$origin_lat, $origin_lng], 15);";
         // Agregar una capa de mapa base
         echo "L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'

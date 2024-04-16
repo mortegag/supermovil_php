@@ -1,53 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autocomplete Test</title>
+    <title>Autocompletar Ubicaciones</title>
 </head>
 <body>
 
-<form id="autocomplete-form" onsubmit="return submitAutocomplete()">
-    <input type="text" id="search-input" placeholder="Buscar lugar...">
+<h1>Autocompletar Ubicaciones</h1>
+
+<form action="" method="GET">
+    <label for="location">Ingrese una ubicación:</label><br>
+    <input type="text" id="location" name="location" required><br><br>
     <button type="submit">Buscar</button>
 </form>
 
-<script>
-function submitAutocomplete() {
-    const form = document.getElementById("autocomplete-form");
-    const searchInput = document.getElementById("search-input").value;
-
-    fetch('', {
-        method: 'POST',
-        body: JSON.stringify({ q: searchInput }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data); // Imprimir la respuesta en la consola del navegador
-    })
-    .catch(error => console.error('Error:', error));
-
-    return false; // Evitar que el formulario se envíe de manera tradicional
-}
-</script>
-
 <?php
-function autocomplete()
-{
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $q = $_POST["q"];
-        $url = "https://nominatim.openstreetmap.org/search?q=" . urlencode($q) . "&format=json&limit=10";
+if (isset($_GET['location'])) {
+    // Funciones para hacer una solicitud GET al API y obtener coordenadas
+    function requestAutocomplete($text) {
+        $apiKey = "5b3ce3597851110001cf624814ab2cd7d2ee480c9f7a79416538787f";
+        $url = "https://api.openrouteservice.org/geocode/autocomplete?api_key=$apiKey&size=25&focus.point.lat=8.52106435&focus.point.lon=-82.62965255&text=$text";
         $response = file_get_contents($url);
-        header('Content-Type: application/json'); // Establecer el tipo de contenido de la respuesta
-        echo $response;
+        return json_decode($response, true);
+    }
+
+    function requestCoordinates($place_id) {
+        $apiKey = "MI_LLAVE";
+        $url = "https://api.openrouteservice.org/geocode/details?api_key=$apiKey&id=$place_id";
+        $response = file_get_contents($url);
+        $data = json_decode($response, true);
+        return $data['features'][0]['geometry']['coordinates'];
+    }
+
+    // Obtener sugerencias de autocompletado
+    $location = $_GET['location'];
+    $suggestions = requestAutocomplete($location);
+
+    // Mostrar sugerencias
+    echo "<h2>Sugerencias de autocompletado para '$location':</h2>";
+    if (isset($suggestions['features'])) {
+        echo "<ul>";
+        foreach ($suggestions['features'] as $key => $suggestion) {
+            $place_id = $suggestion['properties']['id'];
+            $name = $suggestion['properties']['name'];
+            $country = $suggestion['properties']['country'];
+            $region = $suggestion['properties']['region'];
+            echo "<li>$name, $region, $country <a href='?place_id=$place_id'>Obtener Coordenadas</a></li>";
+        }
+        echo "</ul>";
+    } else {
+        echo "<p>No se encontraron sugerencias para '$location'.</p>";
     }
 }
 
-// Llamar a la función autocomplete
-autocomplete();
+// Obtener coordenadas si se hace clic en un enlace
+if (isset($_GET['place_id'])) {
+    $place_id = $_GET['place_id'];
+    $coordinates = requestCoordinates($place_id);
+    echo "<br>Coordenadas seleccionadas: Latitud: {$coordinates[1]}, Longitud: {$coordinates[0]}";
+}
 ?>
 
 </body>

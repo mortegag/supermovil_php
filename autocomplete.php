@@ -16,23 +16,27 @@
 </form>
 
 <?php
+// Función para hacer una solicitud GET al API
+function requestAutocomplete($text) {
+    $apiKey = "5b3ce3597851110001cf624814ab2cd7d2ee480c9f7a79416538787f";
+    $url = "https://api.openrouteservice.org/geocode/autocomplete?api_key=$apiKey&size=25&focus.point.lat=8.52106435&focus.point.lon=-82.62965255&text=$text";
+       echo $url;
+    $response = file_get_contents($url);
+    return json_decode($response, true);
+ 
+}
+
+// Función para obtener coordenadas de una ubicación específica
+function requestCoordinates($place_id) {
+    $apiKey = "5b3ce3597851110001cf624814ab2cd7d2ee480c9f7a79416538787f";
+    $url = "https://api.openrouteservice.org/geocode/details?api_key=$apiKey&id=$place_id";
+    echo $url;
+    $response = file_get_contents($url);
+    $data = json_decode($response, true);
+    return $data['features'][0]['geometry']['coordinates'];
+}
+
 if (isset($_GET['location'])) {
-    // Funciones para hacer una solicitud GET al API y obtener coordenadas
-    function requestAutocomplete($text) {
-        $apiKey = "5b3ce3597851110001cf624814ab2cd7d2ee480c9f7a79416538787f";
-        $url = "https://api.openrouteservice.org/geocode/autocomplete?api_key=$apiKey&size=25&focus.point.lat=8.52106435&focus.point.lon=-82.62965255&text=$text";
-        $response = file_get_contents($url);
-        return json_decode($response, true);
-    }
-
-    function requestCoordinates($place_id) {
-        $apiKey = "MI_LLAVE";
-        $url = "https://api.openrouteservice.org/geocode/details?api_key=$apiKey&id=$place_id";
-        $response = file_get_contents($url);
-        $data = json_decode($response, true);
-        return $data['features'][0]['geometry']['coordinates'];
-    }
-
     // Obtener sugerencias de autocompletado
     $location = $_GET['location'];
     $suggestions = requestAutocomplete($location);
@@ -46,7 +50,9 @@ if (isset($_GET['location'])) {
             $name = $suggestion['properties']['name'];
             $country = $suggestion['properties']['country'];
             $region = $suggestion['properties']['region'];
-            echo "<li>$name, $region, $country <a href='?place_id=$place_id'>Obtener Coordenadas</a></li>";
+            $lat = $suggestion['geometry']['coordinates'][1];
+            $lng = $suggestion['geometry']['coordinates'][0];
+            echo "<li>$name, $region, $country,$lat,$lng <a href='?place_id=$place_id'>Obtener Coordenadas</a></li>";
         }
         echo "</ul>";
     } else {

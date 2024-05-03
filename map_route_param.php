@@ -101,7 +101,12 @@
         // Iterar sobre los puntos
         foreach ($puntos as $index => $punto) {
             $popupContent = "ID: $punto->id <br> Descripción: $punto->Description";
-            echo "L.marker([$punto->lat, $punto->Lng]).bindPopup('$popupContent').addTo(map);";
+            echo "L.marker([$punto->lat, $punto->Lng], {icon: L.icon({
+                iconUrl: '" . ($index === 0 ? 'origin-icon.png' : 'destination-icon.png') . "', // URL del icono personalizado
+                iconSize: [38, 95], // Tamaño del icono
+                iconAnchor: [22, 94], // Punto de anclaje del icono
+                popupAnchor: [-3, -76] // Punto de anclaje del popup
+            })}).bindPopup('$popupContent').addTo(map);";
             if ($index === 0) {
                 // Primer punto encontrado, establecer como origen
                 $origin_lat = $punto->lat;

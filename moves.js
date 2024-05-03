@@ -114,7 +114,7 @@ function updateCellByUniqueKey(Key, location, places) {
 }
 
 // Obtener los datos de MongoDB
-fetch("https://supermovilapp.com:3001/api/collections/GeoPoints/data")
+fetch("http://supermovilapp.com:3001/api/collections/GeoPoints/data")
     .then(response => response.json())
     .then(data => {
         // Iterar sobre los documentos y agregar o actualizar los marcadores
